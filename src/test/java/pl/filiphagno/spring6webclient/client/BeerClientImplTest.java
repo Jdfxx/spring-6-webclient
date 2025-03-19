@@ -38,4 +38,30 @@ class BeerClientImplTest {
         await().untilTrue(atomicBoolean);
 
     }
+
+    @Test
+    void listBeersJson() {
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+
+        beerClient.listBeerJson().subscribe(response -> {
+            System.out.println(response.toPrettyString());
+            atomicBoolean.set(true);
+        });
+
+        await().untilTrue(atomicBoolean);
+
+    }
+
+    @Test
+    void testGetBeerDto() {
+
+        AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+
+        beerClient.listBeerDTO().subscribe(dto -> {
+            System.out.println(dto.getBeerName());
+            atomicBoolean.set(true);
+        });
+
+        await().untilTrue(atomicBoolean);
+    }
 }
